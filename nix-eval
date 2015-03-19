@@ -17,7 +17,6 @@ while [ "$#" -gt 1 ]; do
         ;;
       --nixpkgs|-n)
         prelude="with import <nixpkgs> {}; "
-        extraBuildFlags+=("$i")
         ;;
       *)
         echo "$0: unknown option \`$i'"
