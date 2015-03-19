@@ -2,6 +2,15 @@
 
 usage () {
   echo "nix-eval [--nixpkgs|-n] <expr>"
+  echo ""
+  echo "  examples"
+  echo ""
+  echo "    \$ nix-eval '1+1'"
+  echo "    2"
+  echo ""
+  echo "    \$ nix-eval -n '\"\${pkgs.xlibs.xset}\"'"
+  echo "    \"/nix/store/6n5f894ndps4rnrvdx8z95sw4pmd1989-xset-1.2.3\""
+  echo ""
   exit 1
 }
 
