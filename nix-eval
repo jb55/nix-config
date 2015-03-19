@@ -1,2 +1,29 @@
-#/usr/bin/env sh
-nix-instantiate --eval --expr "$@"
+#/usr/bin/env bash
+
+usage () {
+  echo "nix-eval [--nixpkgs|-n] <expr>"
+  exit 1
+}
+
+prelude=""
+
+[ "$#" -eq 0 ] && usage
+
+while [ "$#" -gt 1 ]; do
+    i="$1"; shift 1
+    case "$i" in
+      --help)
+        usage
+        ;;
+      --nixpkgs|-n)
+        prelude="with import <nixpkgs> {}; "
+        extraBuildFlags+=("$i")
+        ;;
+      *)
+        echo "$0: unknown option \`$i'"
+        exit 1
+        ;;
+    esac
+done
+
+nix-instantiate --eval --expr "${prelude}$@"
