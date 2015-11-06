@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-exec nix-env -qaP \* | grep -i "$@"
+exec nix-env -f $NIXPKGS -qaP \* | grep -i "$@"
